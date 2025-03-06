@@ -31,5 +31,11 @@
 - include_tasks: setup-Archlinux.yml
   when: ansible_os_family == 'Archlinux'
 
+- name: Copy service file
+    src: redis2.service.j2
+    dest: "/usr/lib/systemd/system/redis2.service"
+    mode: "644"
+  when: redis_daemon == "redis2"
+
 - name: Ensure Redis is running and enabled on boot.
   service: "name={{ redis_daemon }} state=started enabled=yes"
