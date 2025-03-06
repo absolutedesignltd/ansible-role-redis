@@ -32,6 +32,7 @@
   when: ansible_os_family == 'Archlinux'
 
 - name: Copy service file
+  template:
     src: redis2.service.j2
     dest: "/usr/lib/systemd/system/redis2.service"
     mode: "644"
